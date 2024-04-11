@@ -3,11 +3,33 @@ title: Local benchmarking code
 format: gfm
 ---
 
+```{r}
+if (!requireNamespace("benchmarkme", quietly = TRUE)) {
+  install.packages("benchmarkme")
+}
+library(benchmarkme)
+```
+
+# Poseidon 22
+
+```{r}
+if (!file.exists("res-poseidon22.Rds")) {
+  res = benchmark_std()
+  saveRDS(res, "res-poseidon22.Rds")
+}
+```
+
+```{r}
+#| label: poseidon22
+res = readRDS("res-poseidon22.Rds")
+sum(res$elapsed)
+plot(res)
+```
+
 # Workstation Pro
 
 ```{r}
-list.files()
-library(benchmarkme)
+#| label: wsp24
 res = readRDS("res-wsp24.Rds")
 names(res)
 sum(res$elapsed)
