@@ -1,0 +1,15 @@
+---
+title: Local benchmarking code
+format: gfm
+---
+
+# Workstation Pro
+
+```{r}
+list.files()
+library(benchmarkme)
+res = readRDS("res-wsp24.Rds")
+names(res)
+sum(res$elapsed)
+plot(res)
+```
